@@ -1,0 +1,105 @@
+---
+const pathname = new URL(Astro.request.url).pathname;
+const currentPath = pathname.slice(1); // remove the first "/"
+---
+
+<header>
+  <div id="nav-bar">
+    <div id="icon"><h1>Tie's Thoughts</h1></div>
+    <ul id="nav-list">
+      <li class="nav-item">
+        <a class={currentPath === "" ? "active" : ""} href="/">Home</a>
+      </li>
+      <li class="nav-item">
+        <a class={currentPath.startsWith("blog") ? "active" : ""} href="/blog"
+          >Blog</a
+        >
+      </li>
+      <li class="nav-item">
+        <a class={currentPath === "about" ? "active" : ""} href="/about"
+          >About</a
+        >
+      </li>
+      <li class="nav-item">
+        <a class={currentPath === "portfolio" ? "active" : ""} href="/portfolio"
+          >Portfolio</a
+        >
+      </li>
+      <li class="nav-item">
+        <a class={currentPath === "contact" ? "active" : ""} href="/contact"
+          >Contact</a
+        >
+      </li>
+    </ul>
+    <form class="color-picker" transition:persist>
+      <label class="icon" for="light-theme"
+        ><span class="sr-only">Light Theme</span></label
+      >
+
+      <input type="checkbox" name="light-theme" id="light-theme" />
+    </form>
+  </div>
+</header>
+<style>
+  #nav-bar {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+  }
+  #nav-list {
+    margin-left: auto;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    align-items: end;
+    padding-right: 2rem;
+  }
+  .nav-item {
+    list-style-type: none;
+  }
+
+  header {
+    /* border: 1px solid green; */
+    max-width: 100%;
+    padding-inline: 3rem;
+    padding-block: 2rem;
+    position: sticky;
+    top: 0;
+    background-color: var(--color-accent-low);
+  }
+
+  h1 {
+    font-size: xx-large;
+    font-weight: bold;
+  }
+
+  a,
+  a:visited {
+    color: var(--color-gray-2);
+    text-decoration: none;
+    padding: 0.25rem 0.5rem;
+  }
+
+  a.active {
+    background-color: var(--color-gray-5);
+    border-radius: 100vw;
+  }
+  .color-picker {
+    /* position: relative; */
+    display: flex;
+  }
+  #light-theme {
+    display: none;
+  }
+  label.icon::before {
+    font-family: "Font Awesome 5 Pro";
+    content: "\f042";
+    font-size: 24px;
+    visibility: visible;
+    color: var(--color-gray-2);
+  }
+  label.icon {
+    display: flex;
+    align-items: end;
+  }
+</style>

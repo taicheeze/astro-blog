@@ -1,0 +1,20 @@
+---
+import type { CollectionEntry } from "astro:content";
+import Blog from "./Blog.astro";
+type Props = {
+  blogs: CollectionEntry<"blogs">[];
+};
+const { blogs } = Astro.props;
+---
+
+<section class="blog-list">
+  {blogs.map((blog) => <Blog blog={blog} />)}
+
+  <style>
+    .blog-list {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+    }
+  </style>
+</section>

@@ -1,0 +1,21 @@
+---
+import type { CollectionEntry } from "astro:content";
+import { Image } from "astro:assets";
+type Props = {
+  blog: CollectionEntry<"blogs">;
+};
+const { blog } = Astro.props;
+const { Content } = await blog.render();
+---
+
+<article>
+  <Image
+    src={blog.data.image}
+    width={300}
+    height={300 / 1.5}
+    alt={blog.data.title}
+  />
+  <h1>{blog.data.title}</h1>
+
+  <Content />
+</article>

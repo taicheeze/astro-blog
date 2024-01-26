@@ -1,0 +1,13 @@
+---
+import BlogList from "../../components/BlogList.astro";
+import Layout from "../../layouts/Layout.astro";
+import { getCollection } from "astro:content";
+const blogs = await getCollection("blogs");
+console.log("🚀 ~ blogs:", blogs);
+---
+
+<Layout title="Tie's Thoughts">
+  <BlogList blogs={blogs} />
+</Layout>
+
+<style></style>

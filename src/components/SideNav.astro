@@ -1,0 +1,16 @@
+---
+import NavList from "./NavList.astro";
+import type { navItemType } from "./NavList.astro";
+
+type navArray = navItemType[];
+type Props = {
+  navArray: navArray;
+};
+
+const { navArray } = Astro.props;
+---
+
+<aside>
+  <h2>Table of Contents</h2>
+  <NavList navList={navArray} />
+</aside>

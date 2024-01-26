@@ -1,0 +1,26 @@
+---
+export type navItemType = {
+  title: string;
+  url?: string;
+  subNav?: navItemType[];
+};
+type Props = {
+  navList: navItemType[];
+};
+const { navList} = Astro.props;
+---
+
+<ul>
+  {
+    navList.map((navItem: navItemType) => (
+      <li>
+        {Array.isArray(navItem.subNav) ? (
+          <li>{navItem.title}</li>
+          <Astro.self navList={navItem.subNav} />
+        ) : (
+          <a href={navItem.url}>{navItem.title}</a>
+        )}
+      </li>
+    ))
+  }
+</ul>

@@ -1,0 +1,42 @@
+---
+import type { CollectionEntry } from "astro:content";
+import { Image } from "astro:assets";
+type Props = {
+  blog: CollectionEntry<"blogs">;
+};
+const { blog } = Astro.props;
+---
+
+<article>
+  <a href={`/blog/${blog.slug}`}>
+    <Image
+      src={blog.data.image}
+      width={300}
+      height={300 / 1.5}
+      alt={blog.data.title}
+    />
+  </a>
+  <a href={`/blog/${blog.slug}`}><h2>{blog.data.title}</h2></a>
+
+  <p class="preview">{blog.body}</p>
+</article>
+
+<style>
+  h2 {
+    font-weight: bold;
+    font-size: x-large;
+  }
+  a {
+    text-decoration: none;
+    color: inherit;
+  }
+
+  p.preview {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    line-clamp: 2;
+    -webkit-box-orient: vertical;
+  }
+</style>

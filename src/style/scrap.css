@@ -1,0 +1,62 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+:root {
+  --accent: 136, 58, 234;
+  --accent-light: 224, 204, 250;
+  --accent-dark: 49, 10, 101;
+}
+
+html {
+  font-family: system-ui, sans-serif;
+  -webkit-text-size-adjust: none;
+  /* for iOS Safari */
+  text-size-adjust: none;
+  /* for other mobile browsers */
+}
+
+img {
+  display: block;
+  max-width: 100%;
+}
+
+menu:not(article menu),
+ol:not(article ol),
+ul:not(article ul) {
+  list-style: none;
+}
+
+menu,
+ol,
+ul {
+  padding-left: 0;
+}
+
+article ol,
+article ul {
+  list-style-position: inside;
+}
+
+a {
+  text-underline-position: under;
+  text-decoration-thickness: 8;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+label,
+button,
+select,
+summary,
+[type="radio"],
+[type="submit"],
+[type="checkbox"] {
+  cursor: pointer;
+}
