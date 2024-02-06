@@ -1,8 +1,8 @@
 ---
 import type { GetStaticPaths } from "astro";
-import Layout from "../../layouts/Layout.astro";
+import Layout from "@layouts/Layout.astro";
 import { getCollection, type CollectionEntry } from "astro:content";
-import BlogPost from "../../components/BlogPost.astro";
+import BlogPost from "@components/BlogPost.astro";
 export const getStaticPaths = (async () => {
   const blogs = await getCollection("blogs");
   const paths = blogs.map((blog) => {
@@ -26,5 +26,13 @@ const { blog } = Astro.props;
 ---
 
 <Layout title={blog.data.title}>
-  <BlogPost blog={blog} />
+  <div class="wrapper">
+    <BlogPost blog={blog} />
+  </div>
 </Layout>
+<style>
+  .wrapper {
+    max-width: 1200px;
+    flex-grow: 1;
+  }
+</style>

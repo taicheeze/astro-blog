@@ -1,4 +1,6 @@
 ---
+import { Icon } from "astro-icon/components";
+
 const pathname = new URL(Astro.request.url).pathname;
 const currentPath = pathname.slice(1); // remove the first "/"
 ---
@@ -6,38 +8,44 @@ const currentPath = pathname.slice(1); // remove the first "/"
 <header>
   <div id="nav-bar">
     <div id="icon"><h1>Tie's Thoughts</h1></div>
-    <ul id="nav-list">
-      <li class="nav-item">
-        <a class={currentPath === "" ? "active" : ""} href="/">Home</a>
-      </li>
-      <li class="nav-item">
-        <a class={currentPath.startsWith("blog") ? "active" : ""} href="/blog"
-          >Blog</a
-        >
-      </li>
-      <li class="nav-item">
-        <a class={currentPath === "about" ? "active" : ""} href="/about"
-          >About</a
-        >
-      </li>
-      <li class="nav-item">
-        <a class={currentPath === "portfolio" ? "active" : ""} href="/portfolio"
-          >Portfolio</a
-        >
-      </li>
-      <li class="nav-item">
-        <a class={currentPath === "contact" ? "active" : ""} href="/contact"
-          >Contact</a
-        >
-      </li>
-    </ul>
-    <form class="color-picker" transition:persist>
-      <label class="icon" for="light-theme"
-        ><span class="sr-only">Light Theme</span></label
-      >
+    <div class="nav-options">
+      <ul id="nav-list">
+        <li class="nav-item">
+          <a class={currentPath === "" ? "active" : ""} href="/">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class={currentPath.startsWith("blog") ? "active" : ""} href="/blog"
+            >Blog</a
+          >
+        </li>
+        <li class="nav-item">
+          <a class={currentPath === "about" ? "active" : ""} href="/about"
+            >About</a
+          >
+        </li>
+        <li class="nav-item">
+          <a
+            class={currentPath === "portfolio" ? "active" : ""}
+            href="/portfolio">Portfolio</a
+          >
+        </li>
+        <li class="nav-item">
+          <a class={currentPath === "contact" ? "active" : ""} href="/contact"
+            >Contact</a
+          >
+        </li>
+      </ul>
 
-      <input type="checkbox" name="light-theme" id="light-theme" />
-    </form>
+      <form class="color-picker" transition:persist>
+        <label class="icon" for="light-theme"
+          ><span class="sr-only">Light Theme</span><Icon
+            name="material-symbols:contrast"
+          />
+        </label>
+
+        <input type="checkbox" name="light-theme" id="light-theme" />
+      </form>
+    </div>
   </div>
 </header>
 <style>
@@ -59,7 +67,6 @@ const currentPath = pathname.slice(1); // remove the first "/"
   }
 
   header {
-    /* border: 1px solid green; */
     max-width: 100%;
     padding-inline: 3rem;
     padding-block: 2rem;
@@ -85,21 +92,21 @@ const currentPath = pathname.slice(1); // remove the first "/"
     border-radius: 100vw;
   }
   .color-picker {
-    /* position: relative; */
     display: flex;
   }
   #light-theme {
     display: none;
   }
-  label.icon::before {
-    font-family: "Font Awesome 5 Pro";
-    content: "\f042";
-    font-size: 24px;
-    visibility: visible;
+  [data-icon="material-symbols:contrast"] {
+    font-size: 1.5rem;
     color: var(--color-gray-2);
   }
+
   label.icon {
     display: flex;
     align-items: end;
+  }
+  .nav-options {
+    display: flex;
   }
 </style>

@@ -1,14 +1,17 @@
 ---
-import BlogList from "../components/BlogList.astro";
-import Layout from "../layouts/Layout.astro";
-import { getCollection } from "astro:content";
-const blogs = await getCollection("blogs");
-console.log("🚀 ~ blogs:", blogs);
+import Layout from "@layouts/Layout.astro";
 ---
 
 <Layout title="Tie's Contact Info">
-  <h1>Tie's Contact Info</h1>
-  <p>Don't contact me.</p>
+  <div class="wrapper">
+    <h1>Tie's Contact Info</h1>
+    <p>Don't contact me.</p>
+  </div>
 </Layout>
 
-<style></style>
+<style>
+  .wrapper {
+    max-width: 1200px;
+    flex-grow: 1;
+  }
+</style>

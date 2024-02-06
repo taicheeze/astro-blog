@@ -1,4 +1,6 @@
 ---
+import { Icon } from "astro-icon/components";
+
 export type navItemType = {
   title: string;
   url?: string;
@@ -7,7 +9,7 @@ export type navItemType = {
 type Props = {
   navList: navItemType[];
 };
-const { navList} = Astro.props;
+const { navList } = Astro.props;
 ---
 
 <ul>
@@ -15,8 +17,14 @@ const { navList} = Astro.props;
     navList.map((navItem: navItemType) => (
       <li>
         {Array.isArray(navItem.subNav) ? (
-          <li>{navItem.title}</li>
-          <Astro.self navList={navItem.subNav} />
+          <details>
+            <summary>
+              <span>{navItem.title}</span>
+              <Icon class="arrow-icon" name="material-symbols:arrow-right" />
+            </summary>
+
+            <Astro.self navList={navItem.subNav} />
+          </details>
         ) : (
           <a href={navItem.url}>{navItem.title}</a>
         )}
@@ -24,3 +32,37 @@ const { navList} = Astro.props;
     ))
   }
 </ul>
+
+<style>
+  ul {
+    list-style: none;
+    padding-inline: 1rem;
+  }
+  details {
+    padding-bottom: 0.5em;
+  }
+  details > summary {
+    list-style-type: none;
+  }
+  details > summary > span {
+    font-size: 1.25rem;
+    font-weight: bold;
+  }
+  details > summary > .arrow-icon {
+    display: inline-block;
+    width: 1.25rem;
+    height: 1.25rem;
+    transition: transform 0.2s ease-in-out;
+    flex-shrink: 0;
+  }
+  details[open] > summary > .arrow-icon {
+    transform: rotate(90deg);
+  }
+  a,
+  a:visited {
+    color: var(--color-accent-high);
+    text-decoration: none;
+    padding: 0.25rem 0.5rem;
+    font-weight: 600;
+  }
+</style>

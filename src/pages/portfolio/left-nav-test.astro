@@ -1,0 +1,60 @@
+---
+import BlogList from "@components/BlogList.astro";
+import SideNav from "@components/SideNav.astro";
+import Layout from "@layouts/Layout.astro";
+import type { navItemType } from "@components/NavList.astro";
+
+const navListSample: navItemType[] = [
+  {
+    title: "Project-level Tools",
+    subNav: [
+      { title: "Project Dashboard", url: "/project-dashboard" },
+      { title: "Project Settings", url: "/project-settings" },
+      { title: "Project Members", url: "/project-members" },
+      { title: "Project Files", url: "/project-files" },
+      { title: "Project Reports", url: "/project-reports" },
+      { title: "Project Notifications", url: "/project-notifications" },
+      { title: "Project Integrations", url: "/project-integrations" },
+      { title: "Project Billing", url: "/project-billing" },
+      { title: "Project Support", url: "/project-support" },
+    ],
+  },
+  {
+    title: "Company-level Tools",
+    subNav: [
+      { title: "Company Dashboard", url: "/company-dashboard" },
+      { title: "Company Settings", url: "/company-settings" },
+      { title: "Company Members", url: "/company-members" },
+      { title: "Company Files", url: "/company-files" },
+      { title: "Company Reports", url: "/company-reports" },
+      { title: "Company Notifications", url: "/company-notifications" },
+      { title: "Company Integrations", url: "/company-integrations" },
+      { title: "Company Billing", url: "/company-billing" },
+      { title: "Company Support", url: "/company-support" },
+    ],
+  },
+];
+---
+
+<Layout title="Testing Nav">
+  <div class="wrapper">
+    <SideNav navArray={navListSample} />
+
+    <section class="main-content">
+      <h1>Left Nav Test</h1>
+    </section>
+  </div>
+</Layout>
+
+<style>
+  .wrapper {
+    max-width: 1200px;
+    flex-grow: 1;
+    display: flex;
+    gap: 1rem;
+  }
+
+  .main-content {
+    flex: 1;
+  }
+</style>

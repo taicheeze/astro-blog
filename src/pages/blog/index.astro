@@ -1,13 +1,20 @@
 ---
-import BlogList from "../../components/BlogList.astro";
-import Layout from "../../layouts/Layout.astro";
+import BlogList from "@components/BlogList.astro";
+import Layout from "@layouts/Layout.astro";
 import { getCollection } from "astro:content";
 const blogs = await getCollection("blogs");
 console.log("🚀 ~ blogs:", blogs);
 ---
 
 <Layout title="Tie's Thoughts">
-  <BlogList blogs={blogs} />
+  <div class="wrapper">
+    <BlogList blogs={blogs} />
+  </div>
 </Layout>
 
-<style></style>
+<style>
+  .wrapper {
+    max-width: 1200px;
+    flex-grow:1;
+  }
+</style>
